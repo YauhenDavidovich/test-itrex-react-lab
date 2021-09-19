@@ -7,17 +7,23 @@ export const tableReducer = (state: Array<TableDataType> = initialState, action:
     switch (action.type) {
         case 'SET-TABLE':
             return action.todolists.map(rows => ({...rows}))
+        default:
+            return state
+
     }
+
 }
 
 export const setTableDataAC = (todolists: Array<TableDataType>) => ({type: 'SET-TABLE', todolists} as const)
 
 // thunks
-export const fetchTodolistsTC = () => {
+export const fetchTableDataTC = () => {
+
     return (dispatch: ThunkDispatch) => {
         getTableData()
+
             .then((res) => {
-                dispatch(setTableDataAC(res.data))
+                dispatch(setTableDataAC(res))
             })
     }
 }
