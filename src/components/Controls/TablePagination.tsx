@@ -7,8 +7,6 @@ type TablePaginationPropsType = {
     pageLimit: number,
 }
 
-
-
 const TablePagination = ( props:TablePaginationPropsType ) => {
     const numPages = Math.ceil(props.pages / props.pageLimit);
 

@@ -9,7 +9,7 @@ const Filter = (props: FilterPropsType) => {
     return (
         <div className="Filter">
             <select onChange={(val) => props.handleFilterChange(val.target.value)}>
-                <option value="none">none</option>
+                <option value="">none</option>
                 <option value="AK">AK</option>
                 <option value="AL">AL</option>
                 <option value="AR">AR</option>
