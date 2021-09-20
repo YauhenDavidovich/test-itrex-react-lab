@@ -8,7 +8,7 @@ type SearchPropsType = {
 const Search = (props:SearchPropsType) => {
     return (
         <div className="Search">
-            <input type="text" onChange={(e) => props.setSearchTerm(e.target.value)}
+            <input placeholder="Search by name" type="text" onChange={(e) => props.setSearchTerm(e.target.value)}
             />
         </div>
     );

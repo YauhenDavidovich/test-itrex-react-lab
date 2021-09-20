@@ -13,12 +13,22 @@ const MainPage = () => {
     const dispatch = useDispatch();
     const profiles = useSelector<AppRootStateType, Array<TableDataType>>(state => state.profiles)
     const [searchTerm, setSearchTerm] = useState("")
+    const [filter, handleFilterChange] = useState("")
 
-    let filteredProfiles = useMemo(() => {
-        let filtered: Array<TableDataType> = [...profiles]
-        filtered = searchTerm ? filtered.filter(item => item.firstName.toLowerCase().includes(searchTerm.toLowerCase())) : filtered
+    let filteredProfilesBySearch = useMemo(() => {
+        debugger
+        let searched: Array<TableDataType> = [...profiles]
+        searched = searchTerm ? searched.filter(item => item.firstName.toLowerCase().includes(searchTerm.toLowerCase())) : searched
+        let filtered: Array<TableDataType> = [...searched]
+        filtered = filter ? filtered.filter(item => item.adress.state.includes(filter)): filtered
         return filtered
-    }, [profiles, searchTerm])
+    }, [profiles, searchTerm, handleFilterChange])
+
+    let filteredProfilesByState = useMemo(() => {
+        let filtered: Array<TableDataType> = [...filteredProfilesBySearch]
+        filtered = filter ? filtered.filter(item => item.adress.state.includes(filter)): filtered
+        return filtered
+    }, [filteredProfilesBySearch, filter, handleFilterChange])
 
     useEffect(() => {
         dispatch(fetchTableDataTC());
@@ -78,11 +88,11 @@ const MainPage = () => {
             alignItems: 'center',
             height: '100vh'
         }}>
-            <Filter/>
+            <Filter handleFilterChange={handleFilterChange}/>
             <Search setSearchTerm={setSearchTerm}/>
             <Table
                 renderRow={row => generateRow(row)}
-                profiles={filteredProfiles}
+                profiles={filteredProfilesByState}
                 pageLimit={20}
                 header={header}
             />

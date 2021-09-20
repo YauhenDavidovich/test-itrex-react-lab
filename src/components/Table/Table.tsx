@@ -14,13 +14,11 @@ export const Table = (props: PropsType) => {
     const [page, setPage] = useState(0);
     const getPaginatedProfiles = (profiles: Array<TableDataType>) => {
         const offset = page * props.pageLimit;
-        console.log(profiles.slice(offset, offset + props.pageLimit))
         return profiles.slice(offset, offset + props.pageLimit);
     }
     const renderRowData = () => {
         return getPaginatedProfiles(props.profiles);
     }
-
 
     return (
         <>
