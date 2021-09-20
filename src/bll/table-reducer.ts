@@ -3,10 +3,10 @@ import getTableData, {TableDataType} from "../dll/getTableData";
 
 const initialState: Array<TableDataType> = []
 
-export const tableReducer = (state: Array<TableDataType> = initialState, action: ActionsType): Array<TableDataType> =>  {
+export const profilesReducer = (state: Array<TableDataType> = initialState, action: ActionsType): Array<TableDataType> =>  {
     switch (action.type) {
         case 'SET-TABLE':
-            return action.todolists.map(rows => ({...rows}))
+            return action.profiles.map(rows => ({...rows}))
         default:
             return state
 
@@ -14,14 +14,13 @@ export const tableReducer = (state: Array<TableDataType> = initialState, action:
 
 }
 
-export const setTableDataAC = (todolists: Array<TableDataType>) => ({type: 'SET-TABLE', todolists} as const)
+export const setTableDataAC = (profiles: Array<TableDataType>) => ({type: 'SET-TABLE', profiles} as const)
 
 // thunks
 export const fetchTableDataTC = () => {
 
     return (dispatch: ThunkDispatch) => {
         getTableData()
-
             .then((res) => {
                 dispatch(setTableDataAC(res))
             })

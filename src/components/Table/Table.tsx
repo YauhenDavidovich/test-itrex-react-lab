@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {TableDataType} from "../../dll/getTableData";
 import TablePagination from "../Controls/TablePagination";
 
@@ -12,7 +12,6 @@ type PropsType = {
 
 export const Table = (props: PropsType) => {
     const [page, setPage] = useState(0);
-
     const getPaginatedProfiles = (profiles: Array<TableDataType>) => {
         const offset = page * props.pageLimit;
         console.log(profiles.slice(offset, offset + props.pageLimit))

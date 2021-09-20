@@ -1,24 +1,28 @@
 import getTableData, {TableDataType} from "../../dll/getTableData";
 import Table from "../Table/Table";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import Search from "../Controls/Search";
-import TablePagination from "../Controls/TablePagination";
 import Filter from "../Controls/Filter";
 import {useUID} from "react-uid";
+import {fetchTableDataTC} from "../../bll/table-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../bll/store";
 
 const MainPage = () => {
     const uid = useUID();
-    const [profiles, setProfiles] = useState([]);
+    const dispatch = useDispatch();
+    const profiles = useSelector<AppRootStateType, Array<TableDataType>>(state => state.profiles)
+    const [searchTerm, setSearchTerm] = useState("")
 
+    let filteredProfiles = useMemo(() => {
+        let filtered: Array<TableDataType> = [...profiles]
+        filtered = searchTerm ? filtered.filter(item => item.firstName.toLowerCase().includes(searchTerm.toLowerCase())) : filtered
+        return filtered
+    }, [profiles, searchTerm])
 
     useEffect(() => {
-        getTableData().then(data => {
-
-            // @ts-ignore
-            setProfiles(data)
-        });
-    }, []);
-
+        dispatch(fetchTableDataTC());
+    }, [])
 
     const headerOptions = [
         {
@@ -65,13 +69,20 @@ const MainPage = () => {
         </tr>
     );
 
+
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>
             <Filter/>
-            <Search/>
+            <Search setSearchTerm={setSearchTerm}/>
             <Table
                 renderRow={row => generateRow(row)}
-                profiles={profiles}
+                profiles={filteredProfiles}
                 pageLimit={20}
                 header={header}
             />
