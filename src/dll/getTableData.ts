@@ -16,6 +16,21 @@ export interface Adress {
 }
 
 
+// function toFlatPropertyMap(obj: object, keySeparator = '.') {
+//     const flattenRecursive = (obj: object, parentProperty?: string, propertyMap: Record<string, unknown> = {}) => {
+//         for(const [key, value] of Object.entries(obj)){
+//             const property = parentProperty ? `${parentProperty}${keySeparator}${key}` : key;
+//             if(value && typeof value === 'object'){
+//                 flattenRecursive(value, property, propertyMap);
+//             } else {
+//                 propertyMap[property] = value;
+//             }
+//         }
+//         return propertyMap;
+//     };
+//     return flattenRecursive(obj);
+// }
+
 async function getTableData<TableDataType>() {
     try {
         let response = await fetch('https://itrex-react-lab-files.s3.eu-central-1.amazonaws.com/react-test-api.json');

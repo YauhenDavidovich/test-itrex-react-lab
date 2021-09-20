@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {TableDataType} from "../../dll/getTableData";
+import TablePagination from "../Controls/TablePagination";
 
 type PropsType = {
     profiles: Array<TableDataType>
     renderRow: (row: TableDataType) => void
     pageLimit: number
-    header:any
+    header: any
 }
 
 
@@ -14,6 +15,7 @@ export const Table = (props: PropsType) => {
 
     const getPaginatedProfiles = (profiles: Array<TableDataType>) => {
         const offset = page * props.pageLimit;
+        console.log(profiles.slice(offset, offset + props.pageLimit))
         return profiles.slice(offset, offset + props.pageLimit);
     }
     const renderRowData = () => {
@@ -21,13 +23,21 @@ export const Table = (props: PropsType) => {
     }
 
 
-
     return (
+        <>
             <table>
                 {props.header}
                 {renderRowData().map(row => props.renderRow(row))}
             </table>
-    )
+            <TablePagination
+                pageLimit={props.pageLimit}
+                pages={props.profiles.length}
+                currentPage={page}
+                setPage={setPage}
+            />
+        </>
+
+)
 }
 
 export default Table;
