@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/test-itrex-react-lab/static/css/main.6696cc03.chunk.css",
-    "main.js": "/test-itrex-react-lab/static/js/main.17ee6454.chunk.js",
-    "main.js.map": "/test-itrex-react-lab/static/js/main.17ee6454.chunk.js.map",
+    "main.css": "/test-itrex-react-lab/static/css/main.907e8fa6.chunk.css",
+    "main.js": "/test-itrex-react-lab/static/js/main.f6a03ba4.chunk.js",
+    "main.js.map": "/test-itrex-react-lab/static/js/main.f6a03ba4.chunk.js.map",
     "runtime-main.js": "/test-itrex-react-lab/static/js/runtime-main.e3e73fbd.js",
     "runtime-main.js.map": "/test-itrex-react-lab/static/js/runtime-main.e3e73fbd.js.map",
     "static/js/2.ad358a9b.chunk.js": "/test-itrex-react-lab/static/js/2.ad358a9b.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.2395c8cc.chunk.js": "/test-itrex-react-lab/static/js/3.2395c8cc.chunk.js",
     "static/js/3.2395c8cc.chunk.js.map": "/test-itrex-react-lab/static/js/3.2395c8cc.chunk.js.map",
     "index.html": "/test-itrex-react-lab/index.html",
-    "static/css/main.6696cc03.chunk.css.map": "/test-itrex-react-lab/static/css/main.6696cc03.chunk.css.map",
+    "static/css/main.907e8fa6.chunk.css.map": "/test-itrex-react-lab/static/css/main.907e8fa6.chunk.css.map",
     "static/js/2.ad358a9b.chunk.js.LICENSE.txt": "/test-itrex-react-lab/static/js/2.ad358a9b.chunk.js.LICENSE.txt",
     "static/media/index.css": "/test-itrex-react-lab/static/media/find.5825ae62.ico"
   },
   "entrypoints": [
     "static/js/runtime-main.e3e73fbd.js",
     "static/js/2.ad358a9b.chunk.js",
-    "static/css/main.6696cc03.chunk.css",
-    "static/js/main.17ee6454.chunk.js"
+    "static/css/main.907e8fa6.chunk.css",
+    "static/js/main.f6a03ba4.chunk.js"
   ]
 }
