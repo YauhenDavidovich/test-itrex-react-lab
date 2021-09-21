@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/test-itrex-react-lab/static/css/main.d7700ad3.chunk.css",
-    "main.js": "/test-itrex-react-lab/static/js/main.02fed0e4.chunk.js",
-    "main.js.map": "/test-itrex-react-lab/static/js/main.02fed0e4.chunk.js.map",
+    "main.js": "/test-itrex-react-lab/static/js/main.55744c0a.chunk.js",
+    "main.js.map": "/test-itrex-react-lab/static/js/main.55744c0a.chunk.js.map",
     "runtime-main.js": "/test-itrex-react-lab/static/js/runtime-main.e3e73fbd.js",
     "runtime-main.js.map": "/test-itrex-react-lab/static/js/runtime-main.e3e73fbd.js.map",
     "static/js/2.ad358a9b.chunk.js": "/test-itrex-react-lab/static/js/2.ad358a9b.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.e3e73fbd.js",
     "static/js/2.ad358a9b.chunk.js",
     "static/css/main.d7700ad3.chunk.css",
-    "static/js/main.02fed0e4.chunk.js"
+    "static/js/main.55744c0a.chunk.js"
   ]
 }
