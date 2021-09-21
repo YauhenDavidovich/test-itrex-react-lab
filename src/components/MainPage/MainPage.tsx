@@ -16,14 +16,20 @@ const MainPage = () => {
     const [searchTerm, setSearchTerm] = useState("")
     const [currentProfile, setCurrenProfile] = useState<TableDataType>()
     const [filter, handleFilterChange] = useState("")
+    const [sortedField, setSortedField] = useState("");
+
+    let sortedColumns = [...profiles];
+    if (sortedField !== null) {
+        debugger
+        // @ts-ignore
+        sortedColumns.sort((a, b) => (a[sortedField] > b[sortedField] ? 1 : -1))
+    }
 
     let filteredProfilesBySearch = useMemo(() => {
-        let searched: Array<TableDataType> = [...profiles]
+        let searched: Array<TableDataType> = [...sortedColumns]
         searched = searchTerm ? searched.filter(item => item.firstName.toLowerCase().includes(searchTerm.toLowerCase())) : searched
-        let filtered: Array<TableDataType> = [...searched]
-        filtered = filter ? filtered.filter(item => item.adress.state.includes(filter)): filtered
-        return filtered
-    }, [profiles, searchTerm, handleFilterChange])
+        return searched
+    }, [sortedColumns, searchTerm, handleFilterChange])
 
     let filteredProfilesByState = useMemo(() => {
         let filtered: Array<TableDataType> = [...filteredProfilesBySearch]
@@ -78,6 +84,7 @@ const MainPage = () => {
                     padding: 10
                 }}>
                     {header.id}
+                    <button type="button" onClick={() => setSortedField(header.id)}/>
                 </th>
             ))}
         </tr>
