@@ -21,7 +21,12 @@ export const Table = (props: PropsType) => {
     }
 
     return (
-        <>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            width: '100%'
+        }}>
             <table>
                 {props.header}
                 {renderRowData().map(row => props.renderRow(row))}
@@ -32,7 +37,7 @@ export const Table = (props: PropsType) => {
                 currentPage={page}
                 setPage={setPage}
             />
-        </>
+        </div>
 
 )
 }

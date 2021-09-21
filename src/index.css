@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+thead th {
+  text-align: center;
+  border: 2px solid black;
+}
+
 thead button {
   border: 0;
   border-radius: 0;
@@ -22,14 +31,65 @@ thead button {
   margin-bottom: 1px;
 }
 
+button::after {
+  content: '⇔';
+  display: inline-block;
+}
+
+
 button.ascending::after {
   content: '↓';
   display: inline-block;
-  margin-left: 1em;
 }
 
 button.descending::after {
   content: '↑';
   display: inline-block;
-  margin-left: 1em;
+}
+
+tbody td {
+  padding: 0.1em;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background-color: #CCCCCC;
+}
+
+.filter select{
+  margin: 50px;
+  width: 150px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #CCC;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(./images/filter.ico) 96% / 15% no-repeat #EEE;
+}
+
+.search input{
+  margin: 50px;
+  width: 150px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #CCC;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  appearance: none;
+  background: url(./images/find.ico) 96% / 15% no-repeat #EEE;
+}
+
+.pagination {
+  padding: 10px;
+  font-size: 20px;
+}
+
+
+.pagination a {
+  cursor: pointer
 }

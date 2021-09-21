@@ -20,10 +20,13 @@ const TablePagination = ( props:TablePaginationPropsType ) => {
 
     const renderPageBlocks = () => {
         const getPageNumbers = getPaginationNumbers();
+
         return getPageNumbers.map(pageNum =>
             <a
                 key={pageNum}
                 onClick={() => props.setPage(pageNum)}
+                // @ts-ignore
+                style={pageNum === props.currentPage ? { color: 'lightBlue' } : null}
             >
                 {pageNum}
             </a>
@@ -61,7 +64,7 @@ const TablePagination = ( props:TablePaginationPropsType ) => {
     };
 
     return (
-        <div >
+        <div className={'pagination'}>
             {renderPrevPageBlocks()}
             {renderPageBlocks()}
             {renderNextPageBlocks()}

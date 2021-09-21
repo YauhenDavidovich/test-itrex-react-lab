@@ -7,7 +7,8 @@ type FilterPropsType = {
 
 const Filter = (props: FilterPropsType) => {
     return (
-        <div className="Filter">
+        <div className="filter">
+            Filter by state:
             <select onChange={(val) => props.handleFilterChange(val.target.value)}>
                 <option value="">none</option>
                 <option value="AK">AK</option>

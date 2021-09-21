@@ -8,7 +8,7 @@ import {fetchTableDataTC} from "../../bll/table-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/store";
 import Profile from "../Profile/Profile";
-import {useSortableData} from "../../utils/Sort";
+import {TestType, useSortableData} from "../../utils/Sort";
 
 const MainPage = () => {
     const uid = useUID();
@@ -18,7 +18,7 @@ const MainPage = () => {
     const [currentProfile, setCurrenProfile] = useState<TableDataType>()
     const [filter, handleFilterChange] = useState("")
 
-    const { items, requestSort, sortConfig } = useSortableData(profiles);
+    const {items, requestSort, sortConfig} = useSortableData(profiles);
 
     let filteredProfilesBySearch = useMemo(() => {
         let searched: Array<TableDataType> = [...items]
@@ -40,33 +40,41 @@ const MainPage = () => {
         dispatch(fetchTableDataTC());
     }, [])
 
-    const headerOptions = [
+    const headerOptions : Array<{id:TestType, name: string}> = [
         {
-            id: "id"
+            id: "id",
+            name: "id"
         },
         {
-            id: "firstName"
+            id: "firstName",
+            name: "First Name"
         },
         {
             id: "lastName",
+            name: "Last Name"
         },
         {
-            id: "email"
+            id: "email",
+            name: "Email"
         },
         {
-            id: 'State'
+            id: "adress",
+            name: "State"
         }];
 
     const generateRow = (row: any) => {
         return (
+            <tbody>
             <tr key={uid}>
                 {headerOptions.map(
                     field => (
                         <td onClick={() => handlerShowProfile(row)}>
-                            {field.id === 'State' ? row.adress.state : row[field.id]}
+                            {field.id === 'adress' ? row.adress.state : row[field.id]}
                         </td>
                     ))}
             </tr>
+            </tbody>
+
         )
     };
 
@@ -82,13 +90,11 @@ const MainPage = () => {
         <thead>
         <tr>
             {headerOptions.map(header => (
-                <th style={{
-                    border: '1px solid #dddddd',
-                    textAlign: 'center',
-                    padding: 10
-                }}>
-                    {header.id}
-                    <button type="button" onClick={() => requestSort(header.id)}
+                <th>
+                    {header.name}
+                    <button type="button" onClick={() => requestSort(
+                        header.id
+                    )}
                             className={getClassNamesForHeaders(header.id)}
                     />
 
@@ -105,17 +111,34 @@ const MainPage = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh'
+            height: '100vh',
+            maxWidth: '1024px',
+            width: '100%',
+            margin: '0 auto',
         }}>
-            <Filter handleFilterChange={handleFilterChange}/>
-            <Search setSearchTerm={setSearchTerm}/>
-            <Table
-                renderRow={row => generateRow(row)}
-                profiles={filteredProfilesByState}
-                pageLimit={20}
-                header={header}
-            />
-            <Profile row={currentProfile}/>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '100%'
+            }}>
+                <Filter handleFilterChange={handleFilterChange}/>
+                <Search setSearchTerm={setSearchTerm}/>
+            </div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '100%'
+            }}>
+                <Table
+                    renderRow={row => generateRow(row)}
+                    profiles={filteredProfilesByState}
+                    pageLimit={20}
+                    header={header}
+                />
+                <Profile row={currentProfile}/>
+            </div>
         </div>
     )
 }

@@ -1,20 +1,34 @@
 import {useMemo, useState} from "react";
+import {TableDataType} from "../dll/getTableData";
 
-export const useSortableData = (profiles: any, config = null) => {
-    const [sortConfig, setSortConfig] = useState(config);
+export  type TestType = "id"|"firstName"|"lastName"|"email"|"phone"|"adress"|"description"
+
+
+export const useSortableData = (profiles: Array<TableDataType>) => {
+
+
+    const [sortConfig, setSortConfig] = useState<{key: TestType,direction: string } | null>(null);
 
     const sortedItems = useMemo(() => {
         let sortableItems = [...profiles];
         if (sortConfig !== null) {
+            if (sortConfig.key === 'adress'){
+                sortableItems.sort((a, b) => {
+                    if (a.adress.state < b.adress.state) {
+                        return sortConfig.direction === 'ascending' ? -1 : 1;
+                    }
+                    if (a.adress.state > b.adress.state) {
+                        return sortConfig.direction === 'ascending' ? 1 : -1;
+                    }
+                    return 0;
+                });
+
+            }
             sortableItems.sort((a, b) => {
-                // @ts-ignore
                 if (a[sortConfig.key] < b[sortConfig.key]) {
-                    // @ts-ignore
                     return sortConfig.direction === 'ascending' ? -1 : 1;
                 }
-                // @ts-ignore
                 if (a[sortConfig.key] > b[sortConfig.key]) {
-                    // @ts-ignore
                     return sortConfig.direction === 'ascending' ? 1 : -1;
                 }
                 return 0;
@@ -23,19 +37,13 @@ export const useSortableData = (profiles: any, config = null) => {
         return sortableItems;
     }, [profiles, sortConfig]);
 
-    const requestSort = (key: any) => {
+    const requestSort = (key:TestType) => {
         let direction = 'ascending';
         if (
-
-            sortConfig &&
-            // @ts-ignore
-            sortConfig.key === key &&
-            // @ts-ignore
-            sortConfig.direction === 'ascending'
+            sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending'
         ) {
             direction = 'descending';
         }
-        // @ts-ignore
         setSortConfig({ key, direction });
     };
 
