@@ -19,8 +19,6 @@ async function getTableData<TableDataType>() {
     try {
         let response = await fetch('https://itrex-react-lab-files.s3.eu-central-1.amazonaws.com/react-test-api.json');
         let responseJson = await response.json();
-        console.error(responseJson);
-
         return responseJson;
     } catch (error) {
         console.error(error);
