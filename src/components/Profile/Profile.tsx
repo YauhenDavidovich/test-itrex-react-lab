@@ -9,9 +9,9 @@ const Profile = (props: ProfilePropsType) => {
 
     if(props.row) {
         return (
-            <div className="Profile">
+            <div className="profile">
                 <h3>Profile info:</h3>
-                <div>Selected profile: {props.row.firstName} {props.row.lastName}</div>
+                <div className='profile-row'>Selected profile: {props.row.firstName} {props.row.lastName}</div>
                 <div>Description: {props.row.description}</div>
                 <div>Adress: {props.row.adress.streetAddress}</div>
                 <div>City: {props.row.adress.city}</div>
